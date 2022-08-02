@@ -13,8 +13,9 @@ console.log('Simon')
 
 
 
+let num = []
+let numeriIndovinati = []
 function randomFiveNum(max) {
-    let num = []
 
 
     while (num.length < 5) {
@@ -35,17 +36,34 @@ function getRandomInt(max) {
 
 // console.log(randomFiveNum(100))
 
-alert(randomFiveNum(100))
+alert(randomFiveNum(5))
+
+setTimeout(inserisciNumeri, 30000);
 
 
-setTimeout(inserisciNumeri, 3000);
-
+numeriInseriti = []
 function inserisciNumeri() {
-    numeriInseriti = []
     for (let i = 1; i <= 5; i++) {
         numeriInseriti.push(prompt('Inserisci il num ' + i))
     }
+    for (let i = 0; i < num.length; i++) {
+        if (num.includes(parseInt(numeriInseriti[i]))) {
+            // console.log(numeriInseriti[i])
+            numeriIndovinati.push(numeriInseriti[i])
+        }
+    }
 
-    return numeriInseriti
+    if (numeriIndovinati.length === 0) {
+        console.log('Non hai indovinato nessun numero')
+    } else if (numeriIndovinati.length === 1) {
+        console.log('Hai indovinato solo un numero il ' + numeriIndovinati)
+    } else {
+        console.log('Bravo hai indovinato ' + numeriIndovinati.length + ' numeri, ecco quelli che ti ricordavi ' + numeriIndovinati)
+
+    }
+    // console.log(numeriIndovinati)
+
+    return
 }
+
 
