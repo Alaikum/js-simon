@@ -138,6 +138,7 @@ nextArrowEl.addEventListener('click', function () {
         circleSuccessivo.classList.add('circle__active');
     }
     currentIndex++
+    azzeraConteggio()
 
     // console.log(slideAttiva, 'attiva')
     // console.log(slideSuccessiva, 'successiva')
@@ -181,6 +182,7 @@ prevArrowEl.addEventListener('click', function () {
         circleSuccessivo.classList.add('circle__active');
     }
     currentIndex--
+    azzeraConteggio()
 
     console.log(slideAttiva, 'attiva')
     console.log(slideSuccessiva, 'successiva')
@@ -195,7 +197,7 @@ prevArrowEl.addEventListener('click', function () {
 const circle0 = document.querySelector('.slide0')
 circle0.addEventListener('click', function () {
 
-    let alternativeIndex=0
+    let alternativeIndex = 0
     let slideAttiva = slideElements[currentIndex];
     let slideSuccessiva = slideElements[alternativeIndex]
     let circleAttivo = circleArray[currentIndex]
@@ -205,7 +207,7 @@ circle0.addEventListener('click', function () {
     circleAttivo.classList.remove('circle__active');
     circleSuccessivo.classList.add('circle__active');
     currentIndex = alternativeIndex;
-
+    azzeraConteggio()
 })
 
 
@@ -214,7 +216,7 @@ circle0.addEventListener('click', function () {
 const circle1 = document.querySelector('.slide1')
 circle1.addEventListener('click', function () {
 
-    let alternativeIndex=1
+    let alternativeIndex = 1
     let slideAttiva = slideElements[currentIndex];
     let slideSuccessiva = slideElements[alternativeIndex]
     let circleAttivo = circleArray[currentIndex]
@@ -224,6 +226,7 @@ circle1.addEventListener('click', function () {
     circleAttivo.classList.remove('circle__active');
     circleSuccessivo.classList.add('circle__active');
     currentIndex = alternativeIndex;
+    azzeraConteggio()
 
 })
 
@@ -232,7 +235,7 @@ circle1.addEventListener('click', function () {
 const circle2 = document.querySelector('.slide2')
 circle2.addEventListener('click', function () {
 
-    let alternativeIndex=2
+    let alternativeIndex = 2
     let slideAttiva = slideElements[currentIndex];
     let slideSuccessiva = slideElements[alternativeIndex]
     let circleAttivo = circleArray[currentIndex]
@@ -242,7 +245,7 @@ circle2.addEventListener('click', function () {
     circleAttivo.classList.remove('circle__active');
     circleSuccessivo.classList.add('circle__active');
     currentIndex = alternativeIndex;
-
+    azzeraConteggio()
 })
 
 
@@ -250,7 +253,7 @@ circle2.addEventListener('click', function () {
 const circle3 = document.querySelector('.slide3')
 circle3.addEventListener('click', function () {
 
-    let alternativeIndex=3
+    let alternativeIndex = 3
     let slideAttiva = slideElements[currentIndex];
     let slideSuccessiva = slideElements[alternativeIndex]
     let circleAttivo = circleArray[currentIndex]
@@ -260,14 +263,14 @@ circle3.addEventListener('click', function () {
     circleAttivo.classList.remove('circle__active');
     circleSuccessivo.classList.add('circle__active');
     currentIndex = alternativeIndex;
-
+    azzeraConteggio()
 })
 
 // bottone 4 
 const circle4 = document.querySelector('.slide4')
 circle4.addEventListener('click', function () {
 
-    let alternativeIndex=4
+    let alternativeIndex = 4
     let slideAttiva = slideElements[currentIndex];
     let slideSuccessiva = slideElements[alternativeIndex]
     let circleAttivo = circleArray[currentIndex]
@@ -277,8 +280,42 @@ circle4.addEventListener('click', function () {
     circleAttivo.classList.remove('circle__active');
     circleSuccessivo.classList.add('circle__active');
     currentIndex = alternativeIndex;
-
+    azzeraConteggio()
 })
 
 
 
+let clock = setInterval(avantiDaSolo, 3000)
+function avantiDaSolo() {
+    let slideAttiva = slideElements[currentIndex];
+    let slideSuccessiva = slideElements[currentIndex + 1]
+    let circleAttivo = circleArray[currentIndex]
+    let circleSuccessivo = circleArray[currentIndex + 1];
+
+
+    // qui si torna alla prima img quando siamo arrivati alla fine 
+    if (currentIndex === 4) {
+        slideSuccessiva = slideElements[0];
+        slideAttiva.classList.remove('active');
+        slideSuccessiva.classList.add('active');
+        circleSuccessivo = circleArray[0]
+        circleAttivo.classList.remove('circle__active');
+        circleSuccessivo.classList.add('circle__active');
+        // console.log(currentIndex)
+        currentIndex = -1;
+        // console.log(currentIndex)
+
+    } else {
+        // togliere classe active dalla slide attiva 
+        slideAttiva.classList.remove('active');
+        slideSuccessiva.classList.add('active');
+        circleAttivo.classList.remove('circle__active');
+        circleSuccessivo.classList.add('circle__active');
+    }
+    currentIndex++
+}
+
+function azzeraConteggio() {
+    clearInterval(clock);
+    clock = setInterval(avantiDaSolo, 3000)
+}
