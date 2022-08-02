@@ -36,7 +36,7 @@ function getRandomInt(max) {
 
 // console.log(randomFiveNum(100))
 
-alert(randomFiveNum(5))
+alert(randomFiveNum(100))
 
 setTimeout(inserisciNumeri, 30000);
 
